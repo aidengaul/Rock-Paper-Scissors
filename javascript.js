@@ -12,15 +12,49 @@ function playRound(computerSelection, playerSelection) {
     const lowerCase = playerSelection.toLowerCase();
 
     if (computerSelection === lowerCase)
-        return "Tie!"
+        return;
 
     if (computerSelection === "rock" && lowerCase === "scissors" || computerSelection === "paper" && lowerCase === "rock" || computerSelection === "scissors" && lowerCase === "paper")
-        return "You Lose!";
+        return 1;
     else
-        return "You Win!";
+        return 0;
 }
 
-const computerSelection = getComputerChoice();
-let playerSelection = "Rock";
-console.log(computerSelection.concat(" ").concat(playerSelection));
-console.log(playRound(computerSelection, playerSelection));
+function game() {
+
+    let result;
+    let playerScore = 0;
+    let computerScore = 0;
+
+    for (let i = 0; i < 5; i++) {
+        const playerSelection = prompt("What is your choice?", "");
+        const computerSelection = getComputerChoice();
+        console.log(computerSelection.concat(" ").concat(playerSelection));
+
+        result = playRound(computerSelection, playerSelection);
+
+        if (result === 0) {
+            playerScore++;
+            console.log("You won this round!")
+        }
+        else if (result === 1) {
+            computerScore++;
+            console.log("You lost this round!")
+        }
+        else {
+            console.log("This round was a tie!")
+        }
+
+        if (playerScore >= 3) {
+            console.log("You won this game!");
+            break;
+        }
+        else if (computerScore >= 3) {
+            console.log("You lost this game!");
+            break;
+        }
+    }
+
+}
+
+game();
