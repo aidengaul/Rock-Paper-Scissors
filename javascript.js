@@ -18,7 +18,7 @@ function playRound(computerSelection, playerSelection) {
         return 0;
 }
 
-function verifyInput(index, playerInput) {
+function verifyInput(playerInput) {
     if (playerInput !== "rock" && playerInput !== "paper" && playerInput !== "scissors") {
         console.log("Invalid input, try again!")
         return false;
@@ -37,7 +37,7 @@ function game() {
         const lowerCase = playerSelection.toLowerCase();
         const computerSelection = getComputerChoice();
 
-        if (!verifyInput(i, lowerCase)) {
+        if (!verifyInput(lowerCase)) {
             i--;
             continue;
         }
