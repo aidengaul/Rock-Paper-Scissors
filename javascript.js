@@ -22,14 +22,20 @@ function updateScores(playerWon) {
     checkGameStatus(playerScore.textContent, computerScore.textContent);
 }
 
+function unbindListeners() {
+    buttons.forEach(btn => btn.removeEventListener('click', playRound));
+}
+
 function checkGameStatus(playerScore, computerScore) {
     const messageField = document.querySelector('#message');
 
     if (playerScore === "5") {
         messageField.textContent = "You won! Want to play again?"
+        unbindListeners();
     }
     else if (computerScore === "5") {
         messageField.textContent = "You lost! Try harder next time."
+        unbindListeners();
     }
 }
 
