@@ -11,24 +11,6 @@ h1 {
     text-align: center;
 }
 
-.selections {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 100px;
-}
-
-.selections > div {
-    border: 2px white solid;
-    height: 200px;
-    width: 200px;
-}
-
-.selections > div > img {
-    max-height: 200px;
-    max-width: 200px;
-}
-
 .container {
     display: flex;
     justify-content: center;
