@@ -22,7 +22,7 @@ function playRound(e) {
         messageField.textContent = `The computer chose ${computerSelection}! You lost this round!`;
     }
     else {
-        messageField.textContent = `The computer chose ${computerSelection}! You lost this round!`;
+        messageField.textContent = `The computer chose ${computerSelection}! You won this round!`;
         playerWon = true;
     }
 
