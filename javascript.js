@@ -15,14 +15,14 @@ function playRound(e) {
     const messageField = document.querySelector('#message');
 
     if (computerSelection === playerSelection) {
-        messageField.textContent = "It's a tie!";
+        messageField.textContent = `The computer chose ${computerSelection}! It's a tie!`;
         return;
     }
     else if (computerSelection === "rock" && playerSelection === "scissors" || computerSelection === "paper" && playerSelection === "rock" || computerSelection === "scissors" && playerSelection === "paper") {
-        messageField.textContent = "You lost this round!";
+        messageField.textContent = `The computer chose ${computerSelection}! You lost this round!`;
     }
     else {
-        messageField.textContent = "You won this round!";
+        messageField.textContent = `The computer chose ${computerSelection}! You lost this round!`;
         playerWon = true;
     }
 
