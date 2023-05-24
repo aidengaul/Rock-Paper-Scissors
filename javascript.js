@@ -66,6 +66,7 @@ function playAgainButton() {
     const container = document.querySelector('.container');
     const newGame = document.createElement('button');
     newGame.textContent = "Play Again";
+    newGame.setAttribute("id", "play-again");
 
     container.appendChild(newGame);
     newGame.addEventListener('click', startNewGame);
