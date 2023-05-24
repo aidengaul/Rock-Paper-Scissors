@@ -8,27 +8,36 @@ function getComputerChoice() {
         return "scissors";
 }
 
-function updateScores(roundResult) {
+function updateScores(playerWon) {
     const playerScore = document.querySelector('#player-score');
     const computerScore = document.querySelector('#computer-score');
 
-    if (roundResult) {
+    if (playerWon) {
         playerScore.textContent = parseInt(playerScore.textContent) + 1;
     }
     else {
         computerScore.textContent = parseInt(computerScore.textContent) + 1;
+    }
+
+    checkGameStatus(playerScore.textContent, computerScore.textContent);
+}
+
+function checkGameStatus(playerScore, computerScore) {
+    const messageField = document.querySelector('#message');
+
+    if (playerScore === "5") {
+        messageField.textContent = "You won! Want to play again?"
+    }
+    else if (computerScore === "5") {
+        messageField.textContent = "You lost! Try harder next time."
     }
 }
 
 function playRound(e) {
     const playerSelection = e.target.id;
     const computerSelection = getComputerChoice();
-
-    console.log(playerSelection);
-    console.log(computerSelection);
-
-    const messageField = document.querySelector('#message');
     let playerWon = false;
+    const messageField = document.querySelector('#message');
 
     if (computerSelection === playerSelection) {
         messageField.textContent = "It's a tie!";
