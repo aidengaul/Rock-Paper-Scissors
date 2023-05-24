@@ -8,44 +8,6 @@ function getComputerChoice() {
         return "scissors";
 }
 
-function updateScores(playerWon) {
-    const playerScore = document.querySelector('#player-score');
-    const computerScore = document.querySelector('#computer-score');
-
-    if (playerWon) {
-        playerScore.textContent = parseInt(playerScore.textContent) + 1;
-    }
-    else {
-        computerScore.textContent = parseInt(computerScore.textContent) + 1;
-    }
-
-    checkGameStatus(playerScore.textContent, computerScore.textContent);
-}
-
-function unbindListeners() {
-    const buttons = document.querySelectorAll('button');
-    buttons.forEach(btn => btn.removeEventListener('click', playRound));
-    playAgainButton();
-}
-
-function bindListeners() {
-    const buttons = document.querySelectorAll('button');
-    buttons.forEach(btn => btn.addEventListener('click', playRound));
-}
-
-function checkGameStatus(playerScore, computerScore) {
-    const messageField = document.querySelector('#message');
-
-    if (playerScore === "5") {
-        messageField.textContent = "You won! Want to play again?"
-        unbindListeners();
-    }
-    else if (computerScore === "5") {
-        messageField.textContent = "You lost! Try harder next time."
-        unbindListeners();
-    }
-}
-
 function playRound(e) {
     const playerSelection = e.target.id;
     const computerSelection = getComputerChoice();
@@ -65,6 +27,39 @@ function playRound(e) {
     }
 
     updateScores(playerWon);
+}
+
+function updateScores(playerWon) {
+    const playerScore = document.querySelector('#player-score');
+    const computerScore = document.querySelector('#computer-score');
+
+    if (playerWon) {
+        playerScore.textContent = parseInt(playerScore.textContent) + 1;
+    }
+    else {
+        computerScore.textContent = parseInt(computerScore.textContent) + 1;
+    }
+
+    checkGameStatus(playerScore.textContent, computerScore.textContent);
+}
+
+function checkGameStatus(playerScore, computerScore) {
+    const messageField = document.querySelector('#message');
+
+    if (playerScore === "5") {
+        messageField.textContent = "You won! Want to play again?"
+        unbindListeners();
+    }
+    else if (computerScore === "5") {
+        messageField.textContent = "You lost! Try harder next time."
+        unbindListeners();
+    }
+}
+
+function unbindListeners() {
+    const buttons = document.querySelectorAll('button');
+    buttons.forEach(btn => btn.removeEventListener('click', playRound));
+    playAgainButton();
 }
 
 function playAgainButton() {
@@ -90,6 +85,11 @@ function startNewGame() {
     messageField.textContent = "Select your weapon of choice to get started.";
 
     bindListeners();
+}
+
+function bindListeners() {
+    const buttons = document.querySelectorAll('button');
+    buttons.forEach(btn => btn.addEventListener('click', playRound));
 }
 
 bindListeners();
