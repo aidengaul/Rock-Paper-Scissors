@@ -23,7 +23,14 @@ function updateScores(playerWon) {
 }
 
 function unbindListeners() {
+    const buttons = document.querySelectorAll('button');
     buttons.forEach(btn => btn.removeEventListener('click', playRound));
+    playAgainButton();
+}
+
+function bindListeners() {
+    const buttons = document.querySelectorAll('button');
+    buttons.forEach(btn => btn.addEventListener('click', playRound));
 }
 
 function checkGameStatus(playerScore, computerScore) {
@@ -60,5 +67,29 @@ function playRound(e) {
     updateScores(playerWon);
 }
 
-const buttons = document.querySelectorAll('button');
-buttons.forEach(btn => btn.addEventListener('click', playRound));
+function playAgainButton() {
+    const container = document.querySelector('.container');
+    const newGame = document.createElement('button');
+    newGame.textContent = "Play Again";
+
+    container.appendChild(newGame);
+    newGame.addEventListener('click', startNewGame);
+}
+
+function startNewGame() {
+    const container = document.querySelector('.container');
+    const newGame = document.querySelector('.container > button');
+    container.removeChild(newGame);
+
+    const playerScore = document.querySelector('#player-score');
+    const computerScore = document.querySelector('#computer-score');
+    playerScore.textContent = "0";
+    computerScore.textContent = "0";
+
+    const messageField = document.querySelector('#message');
+    messageField.textContent = "Select your weapon of choice to get started.";
+
+    bindListeners();
+}
+
+bindListeners();
